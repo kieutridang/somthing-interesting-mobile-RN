@@ -1,10 +1,35 @@
-import React, {useRef} from 'react';
-import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Video from 'react-native-video';
 
 const VideoPreviewScreen = ({route, navigation}) => {
   const {videoUri} = route.params;
   const videoPlayer = useRef(null);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      setPaused(true);
+      videoPlayer.current.seek(0);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  const handleMergeAudio = () => {
+    navigation.navigate('ProcessVideo', {
+      mode: 'audio',
+      videoUri,
+    });
+  };
+
+  const handleMergeWatermark = () => {
+    navigation.navigate('ProcessVideo', {
+      mode: 'watermark',
+      videoUri,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Video
@@ -12,12 +37,14 @@ const VideoPreviewScreen = ({route, navigation}) => {
         ref={videoPlayer}
         style={styles.video}
         controls
+        muted={false}
+        paused={paused}
       />
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleMergeAudio}>
           <Text>Add Music</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleMergeWatermark}>
           <Text>Add Watermark</Text>
         </TouchableOpacity>
       </View>

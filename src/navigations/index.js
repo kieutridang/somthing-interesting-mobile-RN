@@ -4,6 +4,8 @@ import HomeScreen from '../containers/Home';
 import VideoPreviewScreen from '../containers/VideoPreview';
 import useColorScheme from 'react-native/Libraries/Utilities/useColorScheme';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import ProcessVideoScreen from '../containers/ProcessVideo';
+import FinalResultScreen from '../containers/FinalResult';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +26,20 @@ const RootNavigation = () => {
           title: 'Preview',
         }}
         component={VideoPreviewScreen}
+      />
+      <Stack.Screen
+        name="ProcessVideo"
+        options={{
+          title: 'Cooking',
+        }}
+        component={ProcessVideoScreen}
+      />
+      <Stack.Screen
+        name="FinalResult"
+        options={{
+          title: 'Happy ?',
+        }}
+        component={FinalResultScreen}
       />
     </Stack.Navigator>
   );

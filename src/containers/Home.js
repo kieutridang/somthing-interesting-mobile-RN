@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import RNFS from 'react-native-fs';
 
 const HomeScreen = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -47,7 +48,7 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-  const mediaCallback = useCallback(resp => {
+  const mediaCallback = useCallback(async resp => {
     if (resp.didCancel) {
       return;
     }
@@ -57,7 +58,14 @@ const HomeScreen = ({navigation}) => {
     }
 
     const {uri} = resp;
-    navigation.navigate('VideoPreview', {videoUri: uri});
+    if (Platform.OS === 'android') {
+      const extention = uri.substr(uri.lastIndexOf('.') + 1);
+      const destPath = `${RNFS.DocumentDirectoryPath}/input.${extention}`;
+      await RNFS.copyFile(uri, destPath);
+      navigation.navigate('VideoPreview', {videoUri: destPath});
+    } else {
+      navigation.navigate('VideoPreview', {videoUri: uri});
+    }
   }, []);
 
   return (
