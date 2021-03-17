@@ -1,6 +1,6 @@
-import React from 'react';
-import {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
+  ActivityIndicator,
   Alert,
   Button,
   Platform,
@@ -9,12 +9,13 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import RNFS from 'react-native-fs';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import RNFS from 'react-native-fs';
 
 const HomeScreen = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
+  const [isLoading, setIsLoading] = useState(false);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -24,12 +25,8 @@ const HomeScreen = ({navigation}) => {
     launchCamera(
       {
         mediaType: 'video',
-        videoQuality: Platform.select({
-          ios: 'medium',
-          android: 'high',
-        }),
+        videoQuality: 'high',
         durationLimit: 30,
-        // saveToPhotos: true,
       },
       mediaCallback,
     );
@@ -39,10 +36,7 @@ const HomeScreen = ({navigation}) => {
     launchImageLibrary(
       {
         mediaType: 'video',
-        videoQuality: Platform.select({
-          ios: 'medium',
-          android: 'high',
-        }),
+        videoQuality: 'high',
       },
       mediaCallback,
     );
@@ -59,9 +53,12 @@ const HomeScreen = ({navigation}) => {
 
     const {uri} = resp;
     if (Platform.OS === 'android') {
+      // copy file path from temp path (read only) to app document path for processing
+      setIsLoading(true);
       const extention = uri.substr(uri.lastIndexOf('.') + 1);
       const destPath = `${RNFS.DocumentDirectoryPath}/input.${extention}`;
       await RNFS.copyFile(uri, destPath);
+      setIsLoading(false);
       navigation.navigate('VideoPreview', {videoUri: destPath});
     } else {
       navigation.navigate('VideoPreview', {videoUri: uri});
@@ -75,6 +72,7 @@ const HomeScreen = ({navigation}) => {
       <Button title="Create 30s video" onPress={handleOpenCamera} />
       <View style={styles.devider} />
       <Button title="Select Video" onPress={handleOpenGallery} />
+      {isLoading && <ActivityIndicator size="large" color="yellow" />}
     </ScrollView>
   );
 };
