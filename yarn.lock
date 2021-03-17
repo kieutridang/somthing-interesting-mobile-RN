@@ -941,6 +941,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@react-native-community/cameraroll@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/cameraroll/-/cameraroll-4.0.2.tgz#5baac97f4a56f50b7307b08efcc1fe37acdec462"
+  integrity sha512-GtSZO6pqUzyZvaYidB5zH90o6Yb9YatapgiMQ+JVdbK4bDD74GdrNGDwyinDTzE5LkAQ90HDoAhVgV/uWt5OrQ==
+
 "@react-native-community/cli-debugger-ui@^5.0.1-alpha.1":
   version "5.0.1-alpha.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-5.0.1-alpha.1.tgz#09a856ccd2954cf16eea59b14dd26ae66720e4e6"
@@ -5406,6 +5411,11 @@ react-native-screens@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.18.1.tgz#47b9991c6f762d00d0ed3233e5283d523e859885"
   integrity sha512-r5WZLpmx2hHjC1RgMdPq5YpSU9tEhBpUaZ5M1SUtNIONyiLqQVxabhRCINdebIk4depJiIl7yw2Q85zJyeX6fw==
+
+react-native-share@^5.1.4:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-5.1.4.tgz#0b9d51f6ca724728cb0c5b3ed3a883ee54d7a11b"
+  integrity sha512-/eNBTuimOmzeeBbnZkwW6hbzSZvJnhfkx5cSdQkFS45KRHekD9twP6F8QHn+zJxeJGAP+EgpVCXoA7yCrgKrhQ==
 
 react-native-video@^5.1.1:
   version "5.1.1"

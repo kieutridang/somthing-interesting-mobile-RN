@@ -1,16 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Video from 'react-native-video';
 
 const VideoPreviewScreen = ({route, navigation}) => {
   const {videoUri} = route.params;
-  const videoPlayer = useRef(null);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       setPaused(true);
-      videoPlayer.current.seek(0);
     });
 
     return unsubscribe;
@@ -34,7 +32,6 @@ const VideoPreviewScreen = ({route, navigation}) => {
     <View style={styles.container}>
       <Video
         source={{uri: videoUri}}
-        ref={videoPlayer}
         style={styles.video}
         controls
         muted={false}

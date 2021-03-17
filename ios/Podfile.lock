@@ -13,7 +13,7 @@ PODS:
   - glog (0.3.5)
   - hermes-engine (0.7.2)
   - libevent (2.1.12)
-  - mobile-ffmpeg-full-gpl (4.4.LTS)
+  - mobile-ffmpeg-full (4.4)
   - RCT-Folly (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
@@ -222,8 +222,10 @@ PODS:
     - React-jsi (= 0.64.0)
     - React-perflogger (= 0.64.0)
   - React-jsinspector (0.64.0)
-  - react-native-ffmpeg/full-gpl-lts (0.5.1):
-    - mobile-ffmpeg-full-gpl (= 4.4.LTS)
+  - react-native-cameraroll (4.0.2):
+    - React-Core
+  - react-native-ffmpeg/full (0.5.1):
+    - mobile-ffmpeg-full (= 4.4)
     - React
   - react-native-image-picker (3.3.2):
     - React-Core
@@ -337,6 +339,8 @@ PODS:
     - Yoga
   - RNScreens (2.18.1):
     - React-Core
+  - RNShare (5.1.4):
+    - React-Core
   - SPTPersistentCache (1.1.0)
   - Yoga (1.14.0)
 
@@ -361,7 +365,8 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
-  - react-native-ffmpeg/full-gpl-lts (from `../node_modules/react-native-ffmpeg/react-native-ffmpeg.podspec`)
+  - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
+  - react-native-ffmpeg/full (from `../node_modules/react-native-ffmpeg/react-native-ffmpeg.podspec`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video/VideoCaching (from `../node_modules/react-native-video/react-native-video.podspec`)
@@ -382,6 +387,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNShare (from `../node_modules/react-native-share`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -390,7 +396,7 @@ SPEC REPOS:
     - DVAssetLoaderDelegate
     - hermes-engine
     - libevent
-    - mobile-ffmpeg-full-gpl
+    - mobile-ffmpeg-full
     - SPTPersistentCache
 
 EXTERNAL SOURCES:
@@ -424,6 +430,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-cameraroll:
+    :path: "../node_modules/@react-native-community/cameraroll"
   react-native-ffmpeg:
     :podspec: "../node_modules/react-native-ffmpeg/react-native-ffmpeg.podspec"
   react-native-image-picker:
@@ -466,6 +474,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNShare:
+    :path: "../node_modules/react-native-share"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -478,7 +488,7 @@ SPEC CHECKSUMS:
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   hermes-engine: 7d97ba46a1e29bacf3e3c61ecb2804a5ddd02d4f
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  mobile-ffmpeg-full-gpl: 9d7a8ec95457e39f9c1efe14b848f41798efa684
+  mobile-ffmpeg-full: 505c583d91ac1c4fb2b015787e69d83f83fb8f29
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: 2f8cb5b7533219bf4218a045f92768129cf7050a
   RCTTypeSafety: 512728b73549e72ad7330b92f3d42936f2a4de5b
@@ -490,6 +500,7 @@ SPEC CHECKSUMS:
   React-jsi: 74341196d9547cbcbcfa4b3bbbf03af56431d5a1
   React-jsiexecutor: 06a9c77b56902ae7ffcdd7a4905f664adc5d237b
   React-jsinspector: 0ae35a37b20d5e031eb020a69cc5afdbd6406301
+  react-native-cameraroll: 1965db75c851b15e77a22ca0ac78e32af6b571ae
   react-native-ffmpeg: 9fbe53d5afd6f35978804756f58238cf9340d1d8
   react-native-image-picker: b42940647478bf106ad3c491d6f5d9d40916d865
   react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
@@ -511,9 +522,10 @@ SPEC CHECKSUMS:
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: 64f6c5789f82818c07ba3c71864b73619cb23c76
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
+  RNShare: 8af5349f05fc042d230674dd650d19789187ff9c
   SPTPersistentCache: df36ea46762d7cf026502bbb86a8b79d0080dff4
   Yoga: 8c8436d4171c87504c648ae23b1d81242bdf3bbf
 
-PODFILE CHECKSUM: 8bf5dbdfa36b79eb37c1f65ff1792cb062ec3bb3
+PODFILE CHECKSUM: c9547eabe92b62e87ee828c48ee01e6c7352d737
 
 COCOAPODS: 1.10.1

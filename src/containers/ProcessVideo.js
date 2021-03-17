@@ -2,12 +2,15 @@ import React from 'react';
 import {useCallback} from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {RNFFmpeg, RNFFmpegConfig} from 'react-native-ffmpeg';
 import RNFS from 'react-native-fs';
 
-const SAMPLE_AUDIO =
-  'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_2MG.mp3';
+const SAMPLE_AUDIO = Platform.select({
+  ios: 'https://dl.espressif.com/dl/audio/ff-16b-2c-44100hz.m4a',
+  android:
+    'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_2MG.mp3',
+});
 
 const ProcessVideoScreen = ({route, navigation}) => {
   const {videoUri, mode} = route.params;
